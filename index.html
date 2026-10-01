@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Market — No frills. All flavour.</title>
+<meta name="description" content="Burgers, loaded fries and shakes. No frills. All flavour.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero__inner container">
+    <p class="hero__eyebrow">Burgers / Fries / Shakes</p>
+    <h1 class="hero__wordmark"><span>Black</span> <span>Market</span></h1>
+    <div class="hero__foot">
+      <div>
+        <p class="hero__tagline">No frills. All flavour.</p>
+        <p class="hero__line">We don’t do salads.</p>
+      </div>
+      <a class="btn" href="#menu">
+        See the menu
+        <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v11.5M2 7.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+    </div>
+  </div>
+  <p class="hero__scroll" aria-hidden="true">Scroll</p>
+</header>
+
+<main>
+
+  <!-- ============ BUILD SEQUENCE (scroll-scrubbed canvas, see js/main.js) ============ -->
+  <section class="build" aria-label="How a Black Market burger gets built">
+    <div class="build__sticky">
+      <div class="build__stage">
+        <canvas class="build__canvas" width="1408" height="768" role="img"
+          aria-label="A burger built layer by layer on a wooden board: toasted bun, beef patty, cheese, bacon, lettuce and pickles, sauce, then the top bun. It goes into a black box, the lid closes, and it ends up next to fries and a shake."></canvas>
+        <div class="build__shadow" aria-hidden="true"></div>
+      </div>
+      <p class="build__loading" aria-hidden="true">Loading</p>
+      <div class="build__caption" aria-hidden="true">
+        <p class="build__count"><span data-build-count>01</span> / 13</p>
+        <p class="build__label" data-build-label>Empty board. Not for long.</p>
+      </div>
+      <!-- Shown while the sequence holds on the exploded burger (frame 9) -->
+      <div class="build__panel" aria-hidden="true">
+        <p class="build__panel-name">The Contraband</p>
+        <p class="build__panel-desc">Smash patty, melted cheese, bacon, lettuce, pickles, burger sauce. The one everyone orders.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section class="menu" id="menu" aria-labelledby="menu-title">
+    <div class="container">
+
+      <div class="menu__head">
+        <h2 class="section-title" id="menu-title">Menu.</h2>
+        <p class="menu__intro">Pick one. Or three.</p>
+      </div>
+
+      <!-- Burgers -->
+      <section class="menu__group" aria-labelledby="burgers-title">
+        <div class="menu__group-head">
+          <span class="menu__index" aria-hidden="true">01</span>
+          <h3 class="menu__group-title" id="burgers-title">Burgers</h3>
+        </div>
+        <ul class="menu__grid" role="list">
+          <li class="item">
+            <div class="item__media item__media--vignette">
+              <img class="item__img item__img--zoom" src="images/8.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Burger with melted cheese, bacon, lettuce and burger sauce under a glossy brioche bun.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">The Contraband</h4>
+              <p class="item__price">$16</p>
+            </div>
+            <p class="item__desc">Smash patty, melted cheese, bacon, lettuce, pickles, burger sauce. The one everyone orders.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img item__img--portrait" src="images/chat%202.webp" width="768" height="1376" loading="lazy" decoding="async"
+                alt="Burger with a fried egg, runny yolk, crispy bacon and cheese on a dark plate.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Backroom Deal</h4>
+              <p class="item__price">$17</p>
+            </div>
+            <p class="item__desc">Smash patty, crispy bacon, fried egg, hot sauce mayo.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%203.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Burger with sliced jalapeños, melted pepper jack and chipotle aioli on a sesame bun.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Stolen Goods</h4>
+              <p class="item__price">$17</p>
+            </div>
+            <p class="item__desc">Spicy beef patty, jalapeños, pepper jack, chipotle aioli.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%204.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Smash burger with cheese, raw onion and mustard on a slate board.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">No Receipts</h4>
+              <p class="item__price">$12</p>
+            </div>
+            <p class="item__desc">Single smash, cheese, onion, mustard. Simple. Works.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%205.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Triple-stacked burger with melted cheese, caramelised onion and BBQ sauce running down the sides.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">The Smuggler</h4>
+              <p class="item__price">$22</p>
+            </div>
+            <p class="item__desc">Triple stack, triple cheese, caramelised onion, BBQ sauce. Bring napkins.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%206.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Burger topped with sliced red chillies, melted cheese and chilli flakes on a slate board.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Hush Money</h4>
+              <p class="item__price">$18</p>
+            </div>
+            <p class="item__desc">Ghost pepper patty, habanero cheese, fresno chillies. Don’t say we didn’t warn you.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Loaded fries -->
+      <section class="menu__group" aria-labelledby="fries-title">
+        <div class="menu__group-head">
+          <span class="menu__index" aria-hidden="true">02</span>
+          <h3 class="menu__group-title" id="fries-title">Loaded Fries</h3>
+        </div>
+        <ul class="menu__grid" role="list">
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%207.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Fries covered in cheese sauce, bacon bits and spring onion in a black paper boat.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Bootleg Fries</h4>
+              <p class="item__price">$11</p>
+            </div>
+            <p class="item__desc">Cheese sauce, bacon bits, spring onion.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%208.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Fries piled with pulled beef, chipotle mayo, pickled red onion and herbs.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Off The Books Fries</h4>
+              <p class="item__price">$13</p>
+            </div>
+            <p class="item__desc">Pulled beef, chipotle mayo, pickled onion.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%209.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Fries with grated parmesan, chopped herbs and garlic aioli in a black paper boat.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Under The Table Fries</h4>
+              <p class="item__price">$12</p>
+            </div>
+            <p class="item__desc">Garlic parmesan, herb aioli.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Milkshakes -->
+      <section class="menu__group" aria-labelledby="shakes-title">
+        <div class="menu__group-head">
+          <span class="menu__index" aria-hidden="true">03</span>
+          <h3 class="menu__group-title" id="shakes-title">Milkshakes</h3>
+        </div>
+        <ul class="menu__grid" role="list">
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%2010.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Espresso being poured over a chocolate shake topped with whipped cream and cocoa.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Dirty Money</h4>
+              <p class="item__price">$11</p>
+            </div>
+            <p class="item__desc">Double chocolate, espresso shot.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%2011.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Vanilla shake in a black cup, topped with caramel popcorn crumble.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Hush Hush</h4>
+              <p class="item__price">$9</p>
+            </div>
+            <p class="item__desc">Vanilla, caramel popcorn crumble.</p>
+          </li>
+          <li class="item">
+            <div class="item__media">
+              <img class="item__img" src="images/chat%2012.webp" width="1408" height="768" loading="lazy" decoding="async"
+                alt="Shake topped with whipped cream, caramel drizzle and a shard of burnt sugar.">
+            </div>
+            <div class="item__row">
+              <h4 class="item__name">Blackout</h4>
+              <p class="item__price">$10</p>
+            </div>
+            <p class="item__desc">Salted caramel, burnt sugar.</p>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="find-us">
+  <div class="container">
+    <h2 class="section-title">Find us.</h2>
+
+    <!-- PLACEHOLDER CONTENT: the address, phone number and opening hours below are made up for this mock.
+         The phone number is in the ACMA range reserved for fiction. Replace all of it before going live. -->
+    <div class="footer__grid">
+      <div class="footer__block">
+        <h3 class="footer__label">Address</h3>
+        <address>Rear 14 Cutler Lane<br>Melbourne VIC 3000</address>
+        <p class="footer__note">Round the back. Black door.</p>
+      </div>
+      <div class="footer__block">
+        <h3 class="footer__label">Hours</h3>
+        <dl class="hours">
+          <div class="hours__row"><dt>Mon – Tue</dt><dd>Closed</dd></div>
+          <div class="hours__row"><dt>Wed – Thu</dt><dd>5pm – 10pm</dd></div>
+          <div class="hours__row"><dt>Fri – Sat</dt><dd>5pm – 1am</dd></div>
+          <div class="hours__row"><dt>Sun</dt><dd>5pm – 9pm</dd></div>
+        </dl>
+      </div>
+      <div class="footer__block">
+        <h3 class="footer__label">Phone</h3>
+        <p><a href="tel:+61355500199">(03) 5550 0199</a></p>
+        <p class="footer__note">No bookings. Just turn up.</p>
+      </div>
+    </div>
+    <!-- END PLACEHOLDER CONTENT -->
+
+    <div class="footer__base">
+      <p>© 2026 Black Market</p>
+      <p>No frills. All flavour.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

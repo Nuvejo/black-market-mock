@@ -1,0 +1,588 @@
+/* =============================================================
+   BLACK MARKET — one-page mock
+   ============================================================= */
+
+:root {
+  --bg:        #000;
+  --ink:       #f2ebdc;                  /* off-white / cream */
+  --ink-muted: rgb(242 235 220 / 0.62);
+  --line:      rgb(242 235 220 / 0.14);
+  --accent:    #e3312a;                  /* signal red, 4.7:1 on black so it's safe for small text */
+
+  --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --font-body:    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --max:    80rem;
+
+  /* Native size of every build-sequence frame (images/sequence/*.webp, plus images/12.webp and images/13.webp) */
+  --frame-w: 1408;
+  --frame-h: 768;
+}
+
+
+/* ---------- Base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, p, dl, dd { margin: 0; }
+h1, h2, h3, h4 { font-weight: 400; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+address { font-style: normal; }
+
+::selection { background: var(--accent); color: #000; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--max));
+  margin-inline: auto;
+}
+
+.hero__wordmark,
+.hero__tagline,
+.btn,
+.build__count,
+.build__label,
+.build__panel-name,
+.section-title,
+.menu__index,
+.menu__group-title,
+.item__name,
+.item__price {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.hero__eyebrow,
+.hero__scroll,
+.build__loading,
+.footer__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: 7rem;
+  overflow: hidden;
+}
+
+.hero__inner { container-type: inline-size; }
+
+.hero__eyebrow {
+  margin-bottom: clamp(1rem, 2.5vw, 2rem);
+  color: var(--ink-muted);
+}
+
+.hero__wordmark {
+  font-size: 18.2cqi;           /* measured: one line of Anton at this size spans the container */
+  line-height: 0.82;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+
+.hero__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem 3rem;
+  margin-top: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.hero__tagline {
+  font-size: clamp(1.75rem, 3.4vw, 3rem);
+  line-height: 1;
+}
+
+.hero__line {
+  margin-top: 0.75rem;
+  color: var(--ink-muted);
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+}
+
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  translate: -50% 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  text-indent: 0.32em;          /* balances the trailing letter-spacing */
+  color: var(--ink-muted);
+}
+
+.hero__scroll::after {
+  content: "";
+  width: 1px;
+  height: 2.75rem;
+  background: linear-gradient(var(--ink-muted), transparent);
+  transform-origin: top;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__scroll::after { animation: drop 2.2s cubic-bezier(0.6, 0, 0.3, 1) infinite; }
+}
+
+@keyframes drop {
+  0%   { transform: scaleY(0); opacity: 1; }
+  60%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* Short screens (landscape phones): the hero content fills the viewport, so drop the hint */
+@media (max-height: 31.25em) {
+  .hero { padding-block: 3rem; }
+  .hero__scroll { display: none; }
+}
+
+@media (max-width: 40em) {
+  .hero__wordmark {
+    font-size: 33.5cqi;         /* "MARKET" spans the container */
+    line-height: 0.94;          /* Anton caps are ~0.86em tall; anything tighter and the two lines collide */
+    white-space: normal;
+  }
+  .hero__wordmark span { display: block; }
+}
+
+
+/* ---------- Button ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.1rem 1.5rem 1rem;
+  background: var(--accent);
+  color: #000;
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover { background: var(--ink); }
+
+.btn svg {
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+
+/* ---------- Build sequence ---------- */
+
+.build {
+  --frames-length: 380vh;       /* scroll spent on the 12 frame-to-frame dissolves */
+  --hold-viewports: 1;          /* extra scroll (in viewport heights) that frame 9 holds for; js/main.js reads this */
+  position: relative;
+  /* one pinned viewport + the dissolves + the hold */
+  height: calc(100vh + var(--frames-length) + var(--hold-viewports) * 100vh);
+  height: calc(100svh + var(--frames-length) + var(--hold-viewports) * 100svh);
+}
+
+.build__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* Sized and centred exactly like the canvas, so the float shadow can be placed in image coordinates */
+.build__stage {
+  --float: 0;                   /* 0–1, set by js/main.js: strength of the idle float during the frame 9 hold */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  /* Fill the viewport height; on narrow screens allow a little side overscan so the burger isn't tiny */
+  width: min(125vw, 100vh * var(--frame-w) / var(--frame-h));
+  width: min(125vw, 100svh * var(--frame-w) / var(--frame-h));
+}
+
+/* Idle float: --wave runs 0 ↔ 1 on a sine curve (5s per cycle) while floating. Everything it moves is multiplied
+   by --float, which js/main.js eases in and out at the ends of the hold, so the motion never starts or stops with a jump. */
+@property --wave {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@keyframes wave {
+  to { --wave: 1; }
+}
+
+.build__stage.is-floating {
+  animation: wave 2.5s cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+}
+
+/* Soft shadow under the bottom bun of frame 9: lighter and tighter as the image lifts, darker as it settles */
+.build__shadow {
+  position: absolute;
+  top: 81%;
+  left: 50%;
+  width: 28%;
+  height: 7%;
+  translate: -50% -50%;
+  scale: calc(1 - 0.08 * var(--wave));
+  background: radial-gradient(closest-side, rgb(0 0 0 / 0.9), transparent);
+  opacity: calc(var(--float) * (0.75 - 0.3 * var(--wave)));
+  pointer-events: none;
+}
+
+.build__canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  translate: 0 calc(var(--float) * var(--wave) * -6px);
+  /* Frame backgrounds are dark slate, not pure black, so feather the edges into the page */
+  -webkit-mask-image: radial-gradient(50% 50% at 50% 50%, #000 62%, transparent);
+          mask-image: radial-gradient(50% 50% at 50% 50%, #000 62%, transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.build__loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink-muted);
+}
+
+.build__caption {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(1.5rem, 6vh, 3.5rem);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.build__count {
+  color: var(--accent);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.build__label {
+  max-width: 20ch;
+  margin-top: 0.5rem;
+  font-size: clamp(2rem, 4.2vw, 3.75rem);
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.build.is-ready .build__canvas,
+.build.is-ready .build__caption { opacity: 1; }
+.build.is-ready .build__loading { display: none; }
+
+/* Opacity is driven by scroll in js/main.js */
+.build__panel {
+  position: absolute;
+  top: 50%;
+  right: var(--gutter);
+  translate: 0 -50%;
+  width: min(19rem, 36vw);
+  padding: 1.5rem 1.5rem 1.6rem;
+  background: rgb(0 0 0 / 0.72);
+  border: 1px solid var(--line);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.build__panel-name {
+  font-size: clamp(1.625rem, 2.4vw, 2.25rem);
+  line-height: 1;
+}
+
+.build__panel-name::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-block: 1rem;
+  background: var(--accent);
+}
+
+.build__panel-desc {
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 43.75em) {
+  .build { --frames-length: 200vh; }   /* shorter pin on phones */
+}
+
+/* Portrait: the canvas is a band across the screen. Lift it and sit the caption just under it,
+   so image + caption read as one group centred in the viewport. Half the canvas height = 125vw * 768/1408 / 2 ≈ 34vw. */
+@media (orientation: portrait) {
+  .build__stage { top: 42%; }
+  .build__caption {
+    top: calc(42% + 34vw);
+    bottom: auto;
+  }
+  /* No room beside the image, so the panel takes the free space at the bottom, under the caption */
+  .build__panel {
+    top: auto;
+    right: var(--gutter);
+    bottom: clamp(1rem, 3svh, 2rem);
+    left: var(--gutter);
+    width: auto;
+    translate: none;
+    padding: 1rem 1.25rem 1.1rem;
+  }
+  .build__panel-name::after { margin-block: 0.75rem; }
+}
+
+/* Reduced motion: no pinning or scrubbing, just the assembled burger (frame 8) */
+@media (prefers-reduced-motion: reduce) {
+  .build {
+    height: auto;
+    padding-block: clamp(3rem, 8vw, 6rem);
+  }
+  .build__sticky {
+    position: static;
+    height: auto;
+  }
+  .build__stage {
+    position: static;
+    translate: none;
+    width: 100%;
+  }
+  .build__canvas { transition: none; }
+  .build__caption,
+  .build__panel,
+  .build__shadow { display: none; }
+}
+
+
+/* ---------- Menu ---------- */
+
+.menu {
+  padding-block: clamp(6rem, 12vw, 11rem) clamp(5rem, 10vw, 9rem);
+}
+
+.section-title {
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.82;
+}
+
+.menu__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.menu__intro {
+  color: var(--ink-muted);
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+}
+
+.menu__group { margin-top: clamp(4rem, 8vw, 7rem); }
+
+.menu__group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.menu__index {
+  color: var(--accent);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.menu__group-title {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1;
+}
+
+/* Flex rather than grid so a lone card in the last row (3 items, 2 columns) sits centred */
+.menu__grid {
+  --gap-x: clamp(1.25rem, 2.5vw, 2rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(2.5rem, 5vw, 3.5rem) var(--gap-x);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item { flex: 0 1 100%; }
+
+@media (min-width: 37.5em) {
+  .item { flex-basis: calc((100% - var(--gap-x)) / 2); }
+}
+
+@media (min-width: 60em) {
+  .item { flex-basis: calc((100% - 2 * var(--gap-x)) / 3); }
+}
+
+.item__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #0c0c0c;
+}
+
+.item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item__img--portrait { object-position: 50% 54%; }
+
+/* images/8.webp is a wide shot with blocky artifacts in the background: crop in on the burger and darken the edges */
+.item__img--zoom {
+  transform: scale(1.6);
+  transform-origin: 50% 25%;
+}
+
+.item__media--vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(closest-side at 50% 45%, transparent 55%, rgb(0 0 0 / 0.85));
+  pointer-events: none;
+}
+
+.item__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.item__name {
+  font-size: clamp(1.5rem, 2.1vw, 1.875rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.item__price {
+  flex: none;
+  color: var(--accent);
+  font-size: 1.375rem;
+  line-height: 1;
+}
+
+.item__desc {
+  max-width: 36ch;
+  margin-top: 0.75rem;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+/* ---------- Footer ---------- */
+
+.footer {
+  padding-block: clamp(5rem, 10vw, 8rem) 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 2.5rem 2rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.footer__label {
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.footer__block address,
+.footer__block p,
+.hours {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.footer__block a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.2s ease;
+}
+
+.footer__block a:hover { border-color: var(--accent); }
+
+.footer__block .footer__note {
+  margin-top: 0.75rem;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.hours__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 18rem;
+  padding-block: 0.35rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.hours dt { color: var(--ink-muted); }
+
+.footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  margin-top: clamp(4rem, 8vw, 6rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--ink-muted);
+  font-size: 0.8125rem;
+}
